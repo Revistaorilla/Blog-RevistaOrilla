@@ -101,9 +101,17 @@
       scroll-margin-top: 1.5rem;
     }
 
-    .seccion-tag {
+    .meta-entrada {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.75rem;
+      color: var(--texto-suave);
+    }
+
+    .seccion-tag {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -111,7 +119,7 @@
     }
 
     .entrada h2 {
-      margin: 0.35rem 0 0.85rem;
+      margin: 0.4rem 0 0.9rem;
       font-size: 1.45rem;
       line-height: 1.3;
     }
@@ -151,6 +159,15 @@
       margin-top: 0;
     }
 
+    .cierre-nota {
+      margin-top: 1.1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--borde);
+      font-style: italic;
+      color: var(--texto-suave);
+      font-size: 0.96rem;
+    }
+
     .btn-leer {
       margin-top: 0.65rem;
       background: none;
@@ -172,11 +189,16 @@
 
     footer {
       border-top: 1px solid var(--borde);
-      padding: 1.5rem 1.25rem;
+      padding: 1.75rem 1.25rem;
       text-align: center;
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.85rem;
       color: var(--texto-suave);
+      line-height: 1.6;
+    }
+
+    footer p {
+      margin: 0.25rem 0;
     }
   </style>
 </head>
@@ -199,7 +221,11 @@
   <main>
     <div class="contenedor" id="lista-entradas">
       <article class="entrada" id="nota-algoritmos" data-seccion="algoritmos">
-        <span class="seccion-tag">Algoritmos</span>
+        <div class="meta-entrada">
+          <span class="seccion-tag">Algoritmos</span>
+          <span>·</span>
+          <span>Lectura de 3 min</span>
+        </div>
         <h2>Qué ordena lo que vemos cada día: algoritmos, visibilidad y disputa del sentido</h2>
         <div class="cuerpo-nota">
           <p>Cuando se abre un buscador, una red social o una plataforma de video, no se está frente a un espacio neutral ni a un orden transparente. Detrás de cada pantalla que se desliza opera una arquitectura técnica y económica que clasifica, filtra y jerarquiza lo que aparece primero, lo que queda relegado y lo que se vuelve difícil de encontrar. Pensar estos sistemas no consiste en tratarlos como cajas mágicas ni como simples herramientas de cálculo: implica analizar qué criterios definen la relevancia y cómo esa selección atraviesa la vida cotidiana, la opinión pública y los vínculos sociales.</p>
@@ -207,29 +233,40 @@
           <p>Ese mecanismo acelera y organiza fenómenos conocidos en la teoría de la comunicación y la psicología social, como el sesgo de confirmación y las cámaras de eco. Cuando el sistema devuelve con mayor frecuencia contenidos afines a lo que ya generó respuesta, se refuerza la sensación de que el propio punto de vista es mayoritario o evidente, al tiempo que se reduce el cruce con perspectivas distintas o matices que incomodan. La polarización no nace únicamente de las personas que discuten; también se ve empujada por arquitecturas que premian la reacción rápida, la certeza cerrada o la indignación frente a lo que exige contexto y pausa.</p>
           <p>A la vez, la lógica de visibilidad introduce una asimetría marcada entre lo que circula con fuerza y lo que resulta socialmente relevante. Que un tema sature un muro o una tendencia no significa que exprese un consenso real ni que aborde un problema con rigor. Al contrario, los formatos breves y de alto impacto emocional suelen imponerse sobre análisis más complejos, tendiendo a simplificar procesos históricos, económicos o colectivos y a desplazar la discusión hacia respuestas inmediatas o culpas individualizadas. Diversos pensadores e investigadores han señalado desde distintos ángulos que la opacidad de estos sistemas y el peso de sus criterios comerciales convierten a las plataformas en actores centrales en la distribución del sentido y del poder simbólico.</p>
           <p>Sin embargo, tampoco resulta riguroso caer en el determinismo tecnológico ni asumir que la dinámica digital anula por completo la agencia social. Los sistemas algorítmicos leen señales registrables, pero dejan afuera todo aquello que ocurre en la experiencia concreta: el trabajo territorial, la conversación cara a cara, la memoria compartida, el recorrido de una lectura lenta o las tensiones sociales que no se miden en clics. Reconocer que el orden de la pantalla está filtrado y responde a intereses concretos permite tomar distancia, contrastar fuentes, buscar espacios de lectura menos condicionados por la inmediatez y sostener una mirada crítica sobre lo que se presenta como dado.</p>
+          <p class="cierre-nota">Queda abierta la pregunta sobre qué debates se vuelven visibles y cuáles quedan silenciados cuando la conversación pública pasa por el filtro de la retención.</p>
         </div>
         <button type="button" class="btn-leer" aria-expanded="false">▸ Leer texto completo</button>
       </article>
 
       <article class="entrada" id="nota-mercancia" data-seccion="mercancia">
-        <span class="seccion-tag">Medios como mercancía</span>
+        <div class="meta-entrada">
+          <span class="seccion-tag">Medios como mercancía</span>
+          <span>·</span>
+          <span>Lectura de 3 min</span>
+        </div>
         <h2>Cuando la atención y la palabra se venden</h2>
         <div class="cuerpo-nota">
           <p>Cuando se analiza la circulación mediática contemporánea, reducir los medios a un simple canal de transmisión o a un escaparate de opiniones impide ver lo esencial: gran parte del ecosistema comunicacional funciona bajo reglas de acumulación, propiedad y valorización mercantil. Pensar los medios como mercancía no significa negar el trabajo creativo, periodístico o cultural que ocurre dentro de ellos, sino situar esos procesos dentro de estructuras económicas e institucionales que condicionan qué se produce, qué se estandariza, qué se silencia y qué se vuelve rentable.</p>
           <p>En la tradición crítica de la economía política de la comunicación y de los estudios culturales, la relación entre medios y mercado nunca fue tratada como un dato menor. Diversos pensadores e investigadores han mostrado cómo la concentración de la propiedad, la lógica de la industria cultural o la mercantilización de las audiencias inciden sobre los formatos, los tiempos de elaboración y los marcos interpretativos que predominan, ya sea en la venta de productos culturales, en los grandes grupos mediáticos o en la intermediación de datos y publicidad en las plataformas actuales.</p>
           <p>Un rasgo clave de este proceso es la conversión de la atención y de los hábitos cotidianos en valor. En el escenario digital, el usuario no solo consume contenidos: su tiempo en pantalla, sus búsquedas, sus vínculos y sus reacciones alimentan modelos de negocio orientados a la segmentación, la predicción y la captura publicitaria. Cuando la circulación simbólica queda subordinada a la rentabilidad y a la velocidad de rotación, las problemáticas sociales densas —desigualdad, precarización, políticas públicas, conflictividad territorial, memoria histórica— corren el riesgo de ser comprimidas en piezas breves, espectaculares o descontextualizadas.</p>
           <p>Desde una mirada universitaria y comprometida con lo social, esa tensión no se agota en la crítica abstracta: se palpa en cómo se construyen sentidos comunes sobre quiénes merecen derechos, qué se naturaliza como problema individual y qué agendas quedan fuera del foco. Al mismo tiempo, la mercantilización no clausura por completo las disputas ni las prácticas críticas: existen medios comunitarios, espacios universitarios, producciones independientes y lecturas situadas que buscan disputar el sentido por fuera de la urgencia comercial.</p>
+          <p class="cierre-nota">Pensar cómo se produce y se distribuye la palabra es también una forma de cuidar los espacios donde lo colectivo todavía puede nombrarse sin apuro.</p>
         </div>
         <button type="button" class="btn-leer" aria-expanded="false">▸ Leer texto completo</button>
       </article>
 
       <article class="entrada" id="nota-saberes" data-seccion="saberes">
-        <span class="seccion-tag">Lecturas y saberes</span>
+        <div class="meta-entrada">
+          <span class="seccion-tag">Lecturas y saberes</span>
+          <span>·</span>
+          <span>Lectura de 2 min</span>
+        </div>
         <h2>Saberes en cruce: experiencia, territorio y palabra escrita</h2>
         <div class="cuerpo-nota">
           <p>El vínculo entre lo que se lee en la universidad y lo que ocurre en la vida cotidiana rara vez es lineal. Muchas veces los conceptos teóricos ofrecen herramientas valiosas para nombrar tensiones, desigualdades y procesos sociales que de otro modo quedarían difusos, pero también se vuelven insuficientes o abstractos si no se ponen en diálogo con la experiencia concreta. Pensar los saberes desde ese cruce implica evitar tanto el academicismo encerrado en sí mismo como el rechazo apresurado de toda elaboración conceptual.</p>
           <p>En los recorridos formativos y en la intervención social cotidiana se hace visible que el conocimiento no se produce en un único lugar ni bajo un solo formato. Junto con los textos académicos, las discusiones de cátedra y los marcos teóricos, existen saberes construidos en el territorio, en los vínculos, en las prácticas colectivas y en la memoria de quienes transitan situaciones complejas cada día. Reconocer esa pluralidad no diluye el rigor: por el contrario, exige mayor honestidad intelectual para revisar qué lecturas iluminan un problema y cuáles necesitan ser repensadas frente a la realidad.</p>
           <p>La escritura ocupa en este recorrido un lugar particular. Escribir sobre lo leído y lo vivido obliga a ordenar ideas, a precisar términos y a sostener argumentos sin depender de la consigna rápida ni de la inmediatez del comentario. Cuando se escribe desde una posición situada —universitaria, social y políticamente comprometida—, el texto no busca ofrecer respuestas cerradas, sino abrir preguntas que interpelen a lectores interesados en pensar a fondo lo que se da por sentado.</p>
+          <p class="cierre-nota">Leer y escribir desde lo vivido sostiene un puente necesario entre el rigor de las ideas y el pulso de lo cotidiano.</p>
         </div>
         <button type="button" class="btn-leer" aria-expanded="false">▸ Leer texto completo</button>
       </article>
@@ -238,7 +275,8 @@
 
   <footer>
     <div class="contenedor">
-      Blog Orilla · Entre el aula y lo común
+      <p><strong>Blog Orilla</strong> · Entre el aula y lo común</p>
+      <p>Escritura situada desde el trabajo social, la universidad y lo cotidiano.</p>
     </div>
   </footer>
 
