@@ -1,227 +1,619 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — Revista Orilla</title>
-  <style>
-    :root {
-      --fondo: #f7f5f0;
-      --superficie: #ffffff;
-      --texto: #1e2421;
-      --texto-suave: #525d57;
-      --acento: #1f5c52;
-      --borde: #dedad0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORILLA — Cuaderno de notas, algoritmos y saberes</title>
+<style>
+:root {
+  --color-fondo: #f8fafc;
+  --color-tarjeta: #ffffff;
+  --color-texto: #0f172a;
+  --color-texto-secundario: #334155;
+  --color-primario: #e11d48;
+  --color-secundario: #9333ea;
+  --borde-suave: #e2e8f0;
+  --sombra-tarjeta: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  line-height: 1.55;
+  letter-spacing: 0.3px;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+/* ENCABEZADO FLOTANTE Y LIMPIO */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(248, 250, 252, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--borde-suave);
+}
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.logo-texto-area {
+  display: flex;
+  flex-direction: column;
+}
+.logo-principal {
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(90deg, #e11d48, #f97316, #eab308, #10b981, #3b82f6, #8b5cf6, #a21caf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.subtitulo-logo {
+  font-size: 0.72rem;
+  color: var(--color-texto-secundario);
+  font-weight: normal;
+  text-transform: lowercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  text-transform: lowercase;
+}
+.nav-btn:hover,
+.nav-btn.activo {
+  color: #0f172a;
+  background-color: #ffffff;
+  border-color: var(--borde-suave);
+  box-shadow: var(--sombra-tarjeta);
+}
+.barra-arcoiris {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #e11d48, #f97316, #eab308, #10b981, #3b82f6, #8b5cf6, #a21caf);
+}
 
-    body {
-      margin: 0;
-      background: var(--fondo);
-      color: var(--texto);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.7;
-    }
+main {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.layout-principal {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 30px;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .layout-principal {
+    grid-template-columns: 1fr;
+  }
+  .header-container {
+    justify-content: center;
+    text-align: center;
+  }
+  nav {
+    justify-content: center;
+  }
+}
+.columna-izquierda {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.badge {
+  display: inline-block;
+  background-color: #fee2e2;
+  color: var(--color-primario);
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  border: 1px solid #fca5a5;
+}
+.badge-morado {
+  background-color: #f3e8ff;
+  color: var(--color-secundario);
+  border-color: #d8b4fe;
+}
+.hitos-historia-box {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-left: 5px solid var(--color-primario);
+  border-radius: 6px;
+  padding: 18px 20px;
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-texto);
+}
+.hitos-historia-box h1 {
+  color: var(--color-texto);
+  font-size: 1.15rem;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+.hitos-historia-box p {
+  color: var(--color-texto-secundario);
+  font-size: 0.84rem;
+  margin: 0 0 10px 0;
+}
+.logros-lista-compacta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.76rem;
+  color: var(--color-texto-secundario);
+}
+.logros-lista-compacta li {
+  background: #f8fafc;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--borde-suave);
+}
+.logros-lista-compacta strong {
+  color: var(--color-primario);
+}
 
-    header {
-      background: var(--superficie);
-      border-bottom: 1px solid var(--borde);
-      padding: 2rem 1.25rem;
-    }
+/* BOTONES: Fondo blanco, texto oscuro y borde arcoíris */
+.btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #1f2937;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-align: center;
+  font-family: inherit;
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 2px solid transparent;
+  background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(90deg, #e11d48, #f97316, #eab308, #10b981, #3b82f6, #8b5cf6, #a21caf);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all 0.25s ease;
+}
+.btn:hover {
+  background-color: #f8fafc;
+  background-image: linear-gradient(#f8fafc, #f8fafc), linear-gradient(90deg, #a21caf, #8b5cf6, #3b82f6, #10b981, #eab308, #f97316, #e11d48);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  color: #0f172a;
+}
 
-    .contenedor {
-      max-width: 72ch;
-      margin: 0 auto;
-    }
+.seccion-titulo {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #0f172a;
+  border-bottom: 2px solid var(--color-primario);
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filtro-indicador {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  color: var(--color-texto-secundario);
+}
 
-    .eyebrow {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--acento);
-      margin-bottom: 0.4rem;
-    }
+.lista-entradas {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.entrada-nota {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-left: 5px solid var(--color-secundario);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-texto);
+}
+.entrada-nota.destacada {
+  border-left-color: var(--color-primario);
+}
+.meta-nota {
+  font-size: 0.74rem;
+  color: var(--color-texto-secundario);
+  margin-bottom: 6px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.entrada-nota h2 {
+  color: var(--color-texto);
+  margin: 4px 0 8px 0;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+.entrada-nota p {
+  font-size: 0.88rem;
+  color: var(--color-texto-secundario);
+  margin: 0 0 12px 0;
+}
+.cuerpo-desplegable {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--borde-suave);
+  font-size: 0.9rem;
+  color: var(--color-texto);
+}
+.cuerpo-desplegable.abierto {
+  display: block;
+}
 
-    h1 {
-      margin: 0 0 0.5rem;
-      font-size: 2rem;
-      line-height: 1.2;
-    }
+.tarjeta {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-texto);
+}
+.tarjeta h3 {
+  color: var(--color-texto);
+  font-size: 0.98rem;
+  margin: 4px 0 8px 0;
+}
+.tarjeta p {
+  font-size: 0.82rem;
+  color: var(--color-texto-secundario);
+  margin: 0 0 12px 0;
+}
 
-    .bajada {
-      margin: 0;
-      color: var(--texto-suave);
-      font-size: 1.05rem;
-    }
+.sidebar-derecha {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.caja-participacion {
+  background: #f8fafc;
+  border: 1px solid var(--borde-suave);
+  border-radius: 6px;
+  padding: 14px;
+  color: var(--color-texto);
+  margin-top: 12px;
+}
+.form-compacto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.form-compacto input,
+.form-compacto textarea {
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid var(--borde-suave);
+  color: var(--color-texto);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-compacto textarea {
+  height: 75px;
+  resize: vertical;
+}
 
-    nav {
-      margin-top: 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
+.seccion-reacciones {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: 6px;
+  padding: 22px;
+  box-shadow: var(--sombra-tarjeta);
+  text-align: center;
+  color: var(--color-texto);
+}
+.seccion-reacciones h3 {
+  color: var(--color-texto);
+  font-size: 1.05rem;
+  margin: 0 0 6px 0;
+}
+.seccion-reacciones p {
+  font-size: 0.8rem;
+  color: var(--color-texto-secundario);
+  margin-bottom: 14px;
+}
+.fila-botones {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-reaccion {
+  background: #f8fafc;
+  border: 1px solid var(--borde-suave);
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  color: var(--color-texto);
+  font-family: inherit;
+}
+.btn-reaccion:hover {
+  background: #fee2e2;
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+}
 
-    nav button {
-      background: transparent;
-      border: 1px solid var(--borde);
-      color: var(--texto);
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 0.88rem;
-    }
-
-    nav button.activo,
-    nav button:hover {
-      background: var(--acento);
-      border-color: var(--acento);
-      color: #ffffff;
-    }
-
-    main {
-      padding: 2rem 1.25rem 3.5rem;
-    }
-
-    .entrada {
-      background: var(--superficie);
-      border: 1px solid var(--borde);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .seccion-tag {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--acento);
-    }
-
-    .entrada h2 {
-      margin: 0.35rem 0 0.6rem;
-      font-size: 1.45rem;
-      line-height: 1.3;
-    }
-
-    .resumen {
-      color: var(--texto-suave);
-      margin: 0 0 1rem;
-    }
-
-    details {
-      border-top: 1px solid var(--borde);
-      padding-top: 1rem;
-    }
-
-    summary {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--acento);
-      cursor: pointer;
-    }
-
-    .cuerpo-nota p {
-      margin: 0.9rem 0;
-    }
-
-    footer {
-      border-top: 1px solid var(--borde);
-      padding: 1.5rem 1.25rem;
-      text-align: center;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.85rem;
-      color: var(--texto-suave);
-    }
-  </style>
+footer {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
+  border-top: 1px solid #334155;
+}
+.logo-footer-img {
+  max-height: 65px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 8px;
+  filter: brightness(0.95);
+}
+.oculto {
+  display: none !important;
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="contenedor">
-      <div class="eyebrow">Revista Orilla · Bitácora de lectura</div>
-      <h1>Conversar y pensar</h1>
-      <p class="bajada">Vamos a conversar y pensar diferentes temas para enriquecer nuestros saberes.</p>
-
-      <nav aria-label="Secciones del blog">
-        <button class="activo" data-filtro="todas">Todas las lecturas</button>
-        <button data-filtro="algoritmos">Algoritmos</button>
-        <button data-filtro="mercancia">Medios como mercancía</button>
-        <button data-filtro="saberes">Lecturas y saberes</button>
-      </nav>
+<header>
+  <div class="header-container">
+    <div class="logo-texto-area">
+      <span class="logo-principal">ORILLA</span>
+      <span class="subtitulo-logo">cuaderno personal • ensayos, algoritmos y saberes</span>
     </div>
-  </header>
+    <nav aria-label="Filtrar notas por eje">
+      <button class="nav-btn activo" data-filtro="todas" onclick="filtrarNotas('todas', this)">todas</button>
+      <button class="nav-btn" data-filtro="algoritmos" onclick="filtrarNotas('algoritmos', this)">algoritmos</button>
+      <button class="nav-btn" data-filtro="medios" onclick="filtrarNotas('medios', this)">medios como mercancía</button>
+      <button class="nav-btn" data-filtro="saberes" onclick="filtrarNotas('saberes', this)">lecturas y saberes</button>
+      <a href="#participa" class="nav-btn">escribir</a>
+    </nav>
+  </div>
+  <div class="barra-arcoiris"></div>
+</header>
 
-  <main>
-    <div class="contenedor" id="lista-entradas">
-      <article class="entrada" data-seccion="algoritmos">
-        <span class="seccion-tag">Algoritmos</span>
-        <h2>Qué ordena lo que vemos cada día</h2>
-        <p class="resumen">Una primera nota para pensar cómo los sistemas de recomendación filtran, priorizan y moldean la conversación pública.</p>
-        <details>
-          <summary>Leer texto completo</summary>
-          <div class="cuerpo-nota">
-            <p>Escribí acá el desarrollo de tu primera entrada sobre algoritmos, sesgos de confirmación o lógica de las plataformas.</p>
-            <p>Podés sumar ejemplos cotidianos y cerrar con una pregunta para seguir pensando.</p>
-          </div>
-        </details>
-      </article>
+<main>
+  <div class="layout-principal">
+    <div class="columna-izquierda">
+      <section class="hitos-historia-box">
+        <span class="badge">Bitácora Individual</span>
+        <h1>Notas, recorridos y reflexiones desde la orilla</h1>
+        <p>Espacio personal para pensar lo que circula en las pantallas, cómo se producen y circulan los discursos y qué queda resonando de las lecturas y cursadas.</p>
+        <ul class="logros-lista-compacta">
+          <li><strong>Eje 1:</strong> Algoritmos y atención</li>
+          <li><strong>Eje 2:</strong> Medios como mercancía</li>
+          <li><strong>Eje 3:</strong> Lecturas y saberes</li>
+        </ul>
+      </section>
 
-      <article class="entrada" data-seccion="mercancia">
-        <span class="seccion-tag">Medios como mercancía</span>
-        <h2>Cuando la atención y la palabra se venden</h2>
-        <p class="resumen">Notas sobre economía mediática, producción cultural y qué pasa cuando el contenido se mide primero por su valor comercial.</p>
-        <details>
-          <summary>Leer texto completo</summary>
-          <div class="cuerpo-nota">
-            <p>Escribí acá tu reflexión sobre medios, mercantilización de la cultura o lecturas de comunicación.</p>
-          </div>
-        </details>
-      </article>
+      <section id="notas">
+        <div class="seccion-titulo">
+          <span>Entradas y ensayos</span>
+          <span id="estado-filtro" class="filtro-indicador">Mostrando: todas las lecturas</span>
+        </div>
 
-      <article class="entrada" data-seccion="saberes">
-        <span class="seccion-tag">Lecturas y saberes</span>
-        <h2>Cruces entre facultad, calle y escritura</h2>
-        <p class="resumen">Un espacio para retomar temas que te gustaron en la universidad, apuntes, autores y preguntas que siguen abiertas.</p>
-        <details>
-          <summary>Leer texto completo</summary>
-          <div class="cuerpo-nota">
-            <p>Escribí acá tu primera entrada de este eje.</p>
-          </div>
-        </details>
-      </article>
+        <div class="lista-entradas">
+          <article class="entrada-nota destacada" data-categoria="algoritmos">
+            <div class="meta-nota">
+              <span class="badge">Algoritmos</span>
+              <span>Noviembre 2026</span>
+              <span>• Lectura de 4 min</span>
+            </div>
+            <h2>La arquitectura invisible de lo que vemos primero</h2>
+            <p>Nada en un feed aparece por azar: cada orden responde a métricas de permanencia, reacción rápida y repetición que moldean qué temas se vuelven urgentes.</p>
+            <button class="btn" onclick="toggleNota(this, 'nota-1')">Leer nota completa ↓</button>
+            <div id="nota-1" class="cuerpo-desplegable">
+              <p>Cuando abrimos una plataforma, el sistema no solo ordena contenidos: sugiere marcos de lectura y refuerza aquello que ya tendemos a mirar. Pensar los algoritmos exige mirar más allá de la "neutralidad técnica" y preguntar qué intereses y hábitos de consumo se alimentan en cada desplazamiento.</p>
+              <p>Anotación de trabajo: registrar cómo cambia el tono de una conversación cuando pasa por lógicas de recomendación automatizada.</p>
+            </div>
+          </article>
+
+          <article class="entrada-nota" data-categoria="medios">
+            <div class="meta-nota">
+              <span class="badge badge-morado">Medios como mercancía</span>
+              <span>Noviembre 2026</span>
+              <span>• Lectura de 4 min</span>
+            </div>
+            <h2>Cuando la atención y la cultura se vuelven producto</h2>
+            <p>Analizar los medios como mercancía permite observar cómo se empaquetan sentidos, emociones y debates públicos dentro de cadenas de valor y circulación.</p>
+            <button class="btn" onclick="toggleNota(this, 'nota-2')">Leer nota completa ↓</button>
+            <div id="nota-2" class="cuerpo-desplegable">
+              <p>La producción simbólica no ocurre en el vacío: convive con formatos estandarizados, tiempos de consumo acelerados y dinámicas de mercado. Distinguir entre lo que se vuelve mercancía y lo que logra abrir grietas críticas es clave para sostener una mirada propia.</p>
+              <p>Anotación de trabajo: comparar cómo se trata un mismo conflicto en medios masivos frente a espacios autogestivos o situados.</p>
+            </div>
+          </article>
+
+          <article class="entrada-nota" data-categoria="saberes">
+            <div class="meta-nota">
+              <span class="badge">Lecturas y saberes</span>
+              <span>Noviembre 2026</span>
+              <span>• Apunte de cursada</span>
+            </div>
+            <h2>Apuntes de facultad: vínculo, territorio y sentido</h2>
+            <p>Los textos de la facultad cobran otro espesor cuando se los cruza con la práctica cotidiana, el trabajo territorial y las preguntas que nacen en el cuerpo.</p>
+            <button class="btn" onclick="toggleNota(this, 'nota-3')">Leer nota completa ↓</button>
+            <div id="nota-3" class="cuerpo-desplegable">
+              <p>Leer teoría no es acumular citas sueltas, sino construir herramientas para leer lo real con mayor lucidez. Este cuaderno busca reunir esos cruces entre conceptos, experiencias y preguntas abiertas sin perder la claridad ni la voz propia.</p>
+              <p>Anotación de trabajo: dejar acá borradores breves antes de desarrollarlos en textos más largos.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="participa" class="tarjeta">
+        <span class="badge">Intercambio</span>
+        <h3>Dejá un comentario o propuesta de lectura</h3>
+        <p>Si querés compartir una devolución, sugerir un texto o acercar una idea sobre estas notas, podés escribir por acá o al correo directo.</p>
+        <form class="form-compacto" action="https://formspree.io/f/xrpbeeol" method="POST">
+          <input type="text" name="nombre" placeholder="Tu nombre o seudónimo" required>
+          <input type="email" name="email" placeholder="Tu correo electrónico" required>
+          <textarea name="mensaje" placeholder="Escribí tu comentario o idea acá..." required></textarea>
+          <button type="submit" class="btn" style="width: fit-content;">Enviar mensaje</button>
+        </form>
+        <div class="caja-participacion">
+          <p style="font-size: 0.8rem; color: var(--color-texto); margin: 0; font-weight: bold;">
+            Correo directo: <a href="mailto:Contactorevistaorilla@gmail.com" style="color: var(--color-primario); text-decoration: underline;">Contactorevistaorilla@gmail.com</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="seccion-reacciones">
+        <h3>¿Qué te parecieron estas notas?</h3>
+        <p>Dejá tu reacción rápida:</p>
+        <div class="fila-botones">
+          <button class="btn-reaccion" onclick="reaccionar('like')">👍 <span id="contador-like">0</span></button>
+          <button class="btn-reaccion" onclick="reaccionar('dislike')">👎 <span id="contador-dislike">0</span></button>
+          <button class="btn-reaccion" onclick="reaccionar('alien')">👽 <span id="contador-alien">0</span></button>
+        </div>
+      </div>
     </div>
-  </main>
 
-  <footer>
-    <div class="contenedor">
-      Blog — Revista Orilla · Vamos a conversar y pensar diferentes temas para enriquecer nuestros saberes.
-    </div>
-  </footer>
+    <aside class="sidebar-derecha">
+      <section class="tarjeta">
+        <span class="badge">Sobre este espacio</span>
+        <h3>Un rincón propio para pensar</h3>
+        <p>Este blog reúne ensayos breves, apuntes de estudio y reflexiones sobre tecnología, comunicación y cultura desde Viedma, Río Negro.</p>
+        <button class="btn" style="width: 100%;" onclick="filtrarNotas('todas', document.querySelector('[data-filtro=\"todas\"]'))">Ver todas las entradas</button>
+      </section>
 
-  <script>
-    const botones = document.querySelectorAll("nav button");
-    const entradas = document.querySelectorAll(".entrada");
+      <section class="tarjeta">
+        <span class="badge badge-morado">Ejes de lectura</span>
+        <h3>Temas en desarrollo</h3>
+        <p><strong>Algoritmos:</strong> sesgos, recomendación y economía de la atención.</p>
+        <p><strong>Medios como mercancía:</strong> industria cultural, circulación y valor.</p>
+        <p style="margin-bottom: 0;"><strong>Lecturas y saberes:</strong> teoría social, comunicación y experiencia situada.</p>
+      </section>
 
-    botones.forEach((boton) => {
-      boton.addEventListener("click", () => {
-        const filtro = boton.dataset.filtro;
+      <section class="tarjeta">
+        <span class="badge">Apoyo</span>
+        <h3>Sostener el proyecto</h3>
+        <p>Si te sirve lo que se publica acá y querés acompañar este espacio, podés pasar por Cafecito.</p>
+        <a href="https://cafecito.app/revistaorilla_" target="_blank" rel="noopener" class="btn" style="width: 100%; padding: 11px; font-weight: bold;">☕ Invitar un Cafecito</a>
+      </section>
+    </aside>
+  </div>
+</main>
 
-        botones.forEach((b) => b.classList.remove("activo"));
-        boton.classList.add("activo");
+<footer>
+  <div style="padding: 6px 0;">
+    <img src="https://raw.githubusercontent.com/Revistaorilla/ORILLA/main/logo_orilla.jpg" alt="ORILLA" class="logo-footer-img" onerror="this.style.display='none'">
+  </div>
+  <p style="font-size: 0.8rem; margin: 4px 0;">ORILLA • Notas y ensayos — Viedma, Río Negro</p>
+  <p style="font-size: 0.8rem; margin: 6px 0;">Contacto: <a href="mailto:Contactorevistaorilla@gmail.com" style="color: #ffffff; text-decoration: underline;">Contactorevistaorilla@gmail.com</a></p>
+  <small style="display: block; margin-top: 10px; opacity: 0.75;">© 2026 ORILLA</small>
+</footer>
 
-        entradas.forEach((entrada) => {
-          const coincide = filtro === "todas" || entrada.dataset.seccion === filtro;
-          entrada.style.display = coincide ? "block" : "none";
-        });
-      });
-    });
-  </script>
+<script>
+const nombresFiltro = {
+  todas: "Mostrando: todas las lecturas",
+  algoritmos: "Mostrando: algoritmos",
+  medios: "Mostrando: medios como mercancía",
+  saberes: "Mostrando: lecturas y saberes"
+};
+
+function filtrarNotas(categoria, botonActivo) {
+  const entradas = document.querySelectorAll(".entrada-nota");
+  entradas.forEach(entrada => {
+    const coincide = categoria === "todas" || entrada.dataset.categoria === categoria;
+    entrada.classList.toggle("oculto", !coincide);
+  });
+
+  document.querySelectorAll(".nav-btn[data-filtro]").forEach(btn => {
+    btn.classList.remove("activo");
+  });
+  if (botonActivo) {
+    botonActivo.classList.add("activo");
+  }
+
+  const indicador = document.getElementById("estado-filtro");
+  if (indicador) {
+    indicador.innerText = nombresFiltro[categoria] || nombresFiltro.todas;
+  }
+}
+
+function toggleNota(boton, idCuerpo) {
+  const cuerpo = document.getElementById(idCuerpo);
+  if (!cuerpo) return;
+  const estaAbierto = cuerpo.classList.toggle("abierto");
+  boton.innerText = estaAbierto ? "Ocultar nota ↑" : "Leer nota completa ↓";
+}
+
+function reaccionar(tipo) {
+  const clave = `orilla_blog_reaccion_${tipo}`;
+  const actual = parseInt(localStorage.getItem(clave) || "0", 10) + 1;
+  localStorage.setItem(clave, actual);
+  const el = document.getElementById(`contador-${tipo}`);
+  if (el) el.innerText = actual;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  ["like", "dislike", "alien"].forEach(tipo => {
+    const clave = `orilla_blog_reaccion_${tipo}`;
+    const actual = parseInt(localStorage.getItem(clave) || "0", 10);
+    const el = document.getElementById(`contador-${tipo}`);
+    if (el) el.innerText = actual;
+  });
+});
+</script>
 </body>
 </html>
