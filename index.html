@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Revista Orilla</title>
+  <style>
+    :root {
+      --fondo: #f7f5f0;
+      --superficie: #ffffff;
+      --texto: #1e2421;
+      --texto-suave: #525d57;
+      --acento: #1f5c52;
+      --borde: #dedad0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--superficie);
+      border-bottom: 1px solid var(--borde);
+      padding: 2rem 1.25rem;
+    }
+
+    .contenedor {
+      max-width: 72ch;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--acento);
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .bajada {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 1.05rem;
+    }
+
+    nav {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    nav button {
+      background: transparent;
+      border: 1px solid var(--borde);
+      color: var(--texto);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+
+    nav button.activo,
+    nav button:hover {
+      background: var(--acento);
+      border-color: var(--acento);
+      color: #ffffff;
+    }
+
+    main {
+      padding: 2rem 1.25rem 3.5rem;
+    }
+
+    .entrada {
+      background: var(--superficie);
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .seccion-tag {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--acento);
+    }
+
+    .entrada h2 {
+      margin: 0.35rem 0 0.6rem;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .resumen {
+      color: var(--texto-suave);
+      margin: 0 0 1rem;
+    }
+
+    details {
+      border-top: 1px solid var(--borde);
+      padding-top: 1rem;
+    }
+
+    summary {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--acento);
+      cursor: pointer;
+    }
+
+    .cuerpo-nota p {
+      margin: 0.9rem 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--borde);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="contenedor">
+      <div class="eyebrow">Revista Orilla · Bitácora de lectura</div>
+      <h1>Conversar y pensar</h1>
+      <p class="bajada">Vamos a conversar y pensar diferentes temas para enriquecer nuestros saberes.</p>
+
+      <nav aria-label="Secciones del blog">
+        <button class="activo" data-filtro="todas">Todas las lecturas</button>
+        <button data-filtro="algoritmos">Algoritmos</button>
+        <button data-filtro="mercancia">Medios como mercancía</button>
+        <button data-filtro="saberes">Lecturas y saberes</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor" id="lista-entradas">
+      <article class="entrada" data-seccion="algoritmos">
+        <span class="seccion-tag">Algoritmos</span>
+        <h2>Qué ordena lo que vemos cada día</h2>
+        <p class="resumen">Una primera nota para pensar cómo los sistemas de recomendación filtran, priorizan y moldean la conversación pública.</p>
+        <details>
+          <summary>Leer texto completo</summary>
+          <div class="cuerpo-nota">
+            <p>Escribí acá el desarrollo de tu primera entrada sobre algoritmos, sesgos de confirmación o lógica de las plataformas.</p>
+            <p>Podés sumar ejemplos cotidianos y cerrar con una pregunta para seguir pensando.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="entrada" data-seccion="mercancia">
+        <span class="seccion-tag">Medios como mercancía</span>
+        <h2>Cuando la atención y la palabra se venden</h2>
+        <p class="resumen">Notas sobre economía mediática, producción cultural y qué pasa cuando el contenido se mide primero por su valor comercial.</p>
+        <details>
+          <summary>Leer texto completo</summary>
+          <div class="cuerpo-nota">
+            <p>Escribí acá tu reflexión sobre medios, mercantilización de la cultura o lecturas de comunicación.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="entrada" data-seccion="saberes">
+        <span class="seccion-tag">Lecturas y saberes</span>
+        <h2>Cruces entre facultad, calle y escritura</h2>
+        <p class="resumen">Un espacio para retomar temas que te gustaron en la universidad, apuntes, autores y preguntas que siguen abiertas.</p>
+        <details>
+          <summary>Leer texto completo</summary>
+          <div class="cuerpo-nota">
+            <p>Escribí acá tu primera entrada de este eje.</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="contenedor">
+      Blog — Revista Orilla · Vamos a conversar y pensar diferentes temas para enriquecer nuestros saberes.
+    </div>
+  </footer>
+
+  <script>
+    const botones = document.querySelectorAll("nav button");
+    const entradas = document.querySelectorAll(".entrada");
+
+    botones.forEach((boton) => {
+      boton.addEventListener("click", () => {
+        const filtro = boton.dataset.filtro;
+
+        botones.forEach((b) => b.classList.remove("activo"));
+        boton.classList.add("activo");
+
+        entradas.forEach((entrada) => {
+          const coincide = filtro === "todas" || entrada.dataset.seccion === filtro;
+          entrada.style.display = coincide ? "block" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
